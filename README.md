@@ -2,11 +2,9 @@
 
 ## Student Details
 
-- Name: `Replace with your full name`
-- Student Number: `Replace with your student number`
+- Name: `EZEKIEL REGO`
 - Module Code: `ISH 407 / HCS411`
 - Institution: `Great Zimbabwe University`
-- Assessment: `Computer Graphics Practical Assignment`
 
 ## Submission Overview
 
