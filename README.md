@@ -1,84 +1,91 @@
-# OpenGL Primitives Reference
+# OpenGL Primitive Types Assignment Submission
 
-This repository contains a high quality visual reference of OpenGL primitive types
+## Student Details
 
-It is created as part of an assignment to demonstrate understanding of how vertices are grouped to form different primitives in OpenGL
+- Name: `Replace with your full name`
+- Student Number: `Replace with your student number`
+- Module Code: `ISH 407 / HCS411`
+- Institution: `Great Zimbabwe University`
+- Assessment: `Computer Graphics Practical Assignment`
 
-## Included primitives
+## Submission Overview
 
-- GL_POINTS
-- GL_LINES
-- GL_LINE_STRIP
-- GL_LINE_LOOP
-- GL_TRIANGLES
-- GL_TRIANGLE_STRIP
-- GL_TRIANGLE_FAN
-- GL_QUADS
-- GL_QUAD_STRIP
-- GL_POLYGON
+This repository contains my OpenGL practical assignment submission for the Computer Graphics module.  
+The work demonstrates how different OpenGL primitive types are formed from vertex coordinates and how those primitives appear when rendered on a single screen.
 
-## Purpose
+The main goal of this program is to reproduce the primitive reference diagrams provided in the assignment brief as closely as possible.  
+To achieve that, the program places each primitive on one page, labels each vertex, and adjusts the layout to visually match the supplied reference images.
 
-The goal of this project is to
+## Implemented Primitive Types
 
-- understand how OpenGL constructs shapes from vertices
-- compare different primitive types visually
-- provide a clear reference for study and revision
-- allow extraction of individual shapes from the image
+The program includes the following OpenGL primitives:
 
-## Explanation of primitives
+- `GL_POINTS`
+- `GL_LINES`
+- `GL_LINE_STRIP`
+- `GL_LINE_LOOP`
+- `GL_TRIANGLES`
+- `GL_TRIANGLE_STRIP`
+- `GL_TRIANGLE_FAN`
+- `GL_QUADS`
+- `GL_QUAD_STRIP`
+- `GL_POLYGON`
 
-### GL_POINTS
-Each vertex is rendered as a single point
+## Files Included
 
-### GL_LINES
-Vertices are grouped in pairs and each pair forms a separate line
+- [main.cpp](main.cpp): main OpenGL source file used to render the primitive chart
+- [main copy.cpp](main%20copy.cpp): backup working copy of the same program
+- [images](images): reference images used to compare and refine the primitive shapes
 
-### GL_LINE_STRIP
-Each vertex connects to the previous one forming a continuous line
+## How The Program Works
 
-### GL_LINE_LOOP
-Same as line strip but the last vertex connects back to the first
+The program uses the GLUT library with a 2D orthographic projection.  
+Each primitive is defined using explicit vertex coordinates.  
+Small helper functions are used to:
 
-### GL_TRIANGLES
-Vertices are grouped in sets of three and each group forms a triangle
+- draw primitive names
+- draw vertex markers and labels such as `v0`, `v1`, `v2`
+- render filled and outlined primitives
+- support scrolling so the entire page can be viewed even when the bottom section extends beyond the visible window
 
-### GL_TRIANGLE_STRIP
-Each new vertex forms a triangle with the previous two vertices
-
-### GL_TRIANGLE_FAN
-All triangles share a common starting vertex creating a fan shape
-
-### GL_QUADS
-Vertices are grouped in sets of four and each group forms a quadrilateral
-
-### GL_QUAD_STRIP
-Each new pair of vertices forms a connected quad with the previous pair
-
-### GL_POLYGON
-All vertices define a single filled polygon
-
-## Usage
-
-This repository can be used for
-
-- learning OpenGL basics
-- assignment reference
-- visual study material
-- presentations
+Some primitives such as `GL_TRIANGLES`, `GL_QUADS`, `GL_QUAD_STRIP`, and `GL_TRIANGLE_FAN` were refined with custom outline logic so that their visual appearance matches the reference images more closely.
 
 ## Program Output
 
+The screenshot below shows the current program output:
+
 ![Program Output](images/live.png)
 
-## Note
+## Build And Run
 
-Some primitives such as GL_QUADS GL_QUAD_STRIP and GL_POLYGON are deprecated in modern OpenGL but are included here for learning purposes
+Example compile command used in this project:
 
-## Author
+```powershell
+C:\msys64\mingw64\bin\g++.exe main.cpp -o app.exe -IC:\msys64\mingw64\include -LC:\msys64\mingw64\lib -lfreeglut -lopengl32 -lglu32
+```
 
-Add your name here
+Run the program with:
 
-## License
+```powershell
+.\app.exe
+```
 
-Specify a license if required
+## Controls
+
+- Mouse wheel: scroll up or down
+- `Up` / `Page Up`: scroll upward
+- `Down` / `Page Down`: scroll downward
+
+## Academic Note
+
+This repository is prepared as an academic submission.  
+The code and images are organised to make marking easier by showing:
+
+- the final rendered output
+- the source code used to generate it
+- the reference images used during development
+
+## Notes For Lecturer
+
+- The implementation focuses on visual similarity to the reference sheet provided in the assignment.
+- Deprecated legacy primitives such as `GL_QUADS`, `GL_QUAD_STRIP`, and `GL_POLYGON` are included intentionally because they are part of the assignment requirements.

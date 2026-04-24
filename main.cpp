@@ -1,5 +1,9 @@
 #include <GL/glut.h>
 
+// Great Zimbabwe University
+// Computer Graphics Practical Assignment
+// This program renders a lecturer-facing reference sheet of OpenGL primitive types.
+
 struct Point2D {
     float x;
     float y;
@@ -10,6 +14,8 @@ struct LabelOffset {
     float dy;
 };
 
+// The page extends slightly below the initial viewport, so scrolling keeps the
+// bottom row visible without changing the primitive sizes.
 float gScrollOffset = 0.0f;
 const float kScrollStep = 4.0f;
 const float kViewBottom = -12.0f;
@@ -111,6 +117,7 @@ void display() {
     glClear(GL_COLOR_BUFFER_BIT);
     glColor3f(0.0f, 0.0f, 0.0f);
 
+    // Top row: point and line-based primitives.
     const Point2D pointsExample[] = {
         {12.0f, 92.0f}, {12.0f, 87.0f}, {18.0f, 88.0f}, {18.0f, 91.0f}, {24.0f, 95.0f}
     };
@@ -173,6 +180,7 @@ void display() {
     drawVertexMarkers(lineLoopExample, lineLoopLabels, 6);
     drawText(79.0f, 39.0f, "GL_LINE_LOOP");
 
+    // Middle row: triangle-based primitives.
     const Point2D trianglesExample[] = {
         {7.0f, 25.5f}, {7.0f, 36.0f}, {16.0f, 25.5f},
         {26.5f, 30.5f}, {18.0f, 43.5f}, {35.5f, 43.5f}
@@ -234,6 +242,7 @@ void display() {
     drawVertexMarkers(triangleFanExample, triangleFanLabels, 5);
     drawText(75.0f, 15.5f, "GL_TRIANGLE_FAN");
 
+    // Bottom row: quad and polygon primitives.
     const Point2D quadsExample[] = {
         {5.5f, 0.5f}, {8.8f, 7.5f}, {18.4f, 8.5f}, {18.4f, 1.5f},
         {27.0f, -0.5f}, {28.0f, 7.5f}, {39.0f, 13.0f}, {34.5f, -0.5f}
@@ -320,6 +329,7 @@ int main(int argc, char** argv) {
     init();
     glutDisplayFunc(display);
     glutReshapeFunc(reshape);
+    // Scroll support makes it possible to view the full submission page.
     glutSpecialFunc(handleSpecialKeys);
     glutMouseFunc(handleMouse);
     glutMainLoop();
