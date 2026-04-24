@@ -67,6 +67,10 @@ This repository can be used for
 - visual study material
 - presentations
 
+## Program Output
+
+![Program Output](images/live.png)
+
 ## Note
 
 Some primitives such as GL_QUADS GL_QUAD_STRIP and GL_POLYGON are deprecated in modern OpenGL but are included here for learning purposes
