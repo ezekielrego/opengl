@@ -11,6 +11,9 @@
 // 3D-style cartoon character scene demonstrating near and far plane depth.
 
 const float PI = 3.1415926535f;
+const float CHARACTER_HOME_Z = 1.20f;
+const float CHARACTER_SIDE_LIMIT = 0.42f;
+const float CHARACTER_DEPTH_LIMIT = 0.12f;
 
 struct Color {
     float r;
@@ -28,7 +31,7 @@ GLUquadric* gQuadric = NULL;
 int gWindowWidth = 1000;
 int gWindowHeight = 820;
 float gCharacterX = 0.0f;
-float gCharacterZ = 1.20f;
+float gCharacterZ = CHARACTER_HOME_Z;
 float gCharacterYaw = 0.0f;
 float gRunPhase = 0.0f;
 bool gIsRunning = false;
@@ -339,17 +342,64 @@ void drawCloud(float x, float y, float z, float scale) {
     drawSphere(x + 0.65f * scale, y, z, 0.70f * scale, 0.35f * scale, 0.30f * scale, cloud, 10.0f, 0.08f);
 }
 
+float strokeTextWidth(const char* text) {
+    float width = 0.0f;
+    while (*text) {
+        width += static_cast<float>(glutStrokeWidth(GLUT_STROKE_ROMAN, static_cast<int>(*text)));
+        ++text;
+    }
+    return width;
+}
+
+void drawStrokeText(const char* text) {
+    glPushMatrix();
+    while (*text) {
+        glutStrokeCharacter(GLUT_STROKE_ROMAN, static_cast<int>(*text));
+        ++text;
+    }
+    glPopMatrix();
+}
+
+void drawCloudWatermark(float x, float y, float z, float scale, const char* text) {
+    glDisable(GL_LIGHTING);
+    glDepthMask(GL_FALSE);
+
+    glPushMatrix();
+    glTranslatef(x, y + 0.10f * scale, z + 0.58f * scale);
+    float textScale = 0.0034f * scale;
+    glScalef(textScale, textScale, textScale);
+    glTranslatef(-strokeTextWidth(text) * 0.5f, -42.0f, 0.0f);
+
+    glLineWidth(3.0f);
+    glColor4f(0.98f, 1.0f, 1.0f, 0.10f);
+    drawStrokeText(text);
+    glLineWidth(1.4f);
+    glColor4f(0.16f, 0.32f, 0.48f, 0.18f);
+    drawStrokeText(text);
+
+    glPopMatrix();
+    glLineWidth(1.0f);
+    glDepthMask(GL_TRUE);
+    glEnable(GL_LIGHTING);
+}
+
 void drawClouds() {
     float drift = std::sin(gFaceTime * 0.20f) * 0.32f;
     float z1 = loopDepth(-16.5f, gWorldTravel * 0.22f, 32.0f, 5.8f);
     float z2 = loopDepth(-22.0f, gWorldTravel * 0.22f, 32.0f, 5.8f);
     float z3 = loopDepth(-31.0f, gWorldTravel * 0.22f, 32.0f, 5.8f);
-    drawCloud(sideLaneX(-4.8f, z1, -26.0f, 5.8f, 3.2f) + drift, 8.0f, z1,
-              approachScale(0.72f, z1, -26.0f, 5.8f, 0.72f));
-    drawCloud(sideLaneX(4.5f, z2, -26.0f, 5.8f, 3.0f) - drift * 0.7f, 7.0f, z2,
-              approachScale(0.50f, z2, -26.0f, 5.8f, 0.68f));
-    drawCloud(sideLaneX(9.2f, z3, -31.0f, 5.8f, 2.5f) + drift * 0.5f, 8.6f, z3,
-              approachScale(0.46f, z3, -31.0f, 5.8f, 0.60f));
+    float cloud1X = sideLaneX(-4.8f, z1, -26.0f, 5.8f, 3.2f) + drift;
+    float cloud1Scale = approachScale(0.72f, z1, -26.0f, 5.8f, 0.72f);
+    drawCloud(cloud1X, 8.0f, z1, cloud1Scale);
+    drawCloudWatermark(cloud1X, 8.0f, z1, cloud1Scale, "M230913");
+    float cloud2X = sideLaneX(4.5f, z2, -26.0f, 5.8f, 3.0f) - drift * 0.7f;
+    float cloud2Scale = approachScale(0.50f, z2, -26.0f, 5.8f, 0.68f);
+    drawCloud(cloud2X, 7.0f, z2, cloud2Scale);
+    drawCloudWatermark(cloud2X, 7.0f, z2, cloud2Scale, "M230913");
+    float cloud3X = sideLaneX(9.2f, z3, -31.0f, 5.8f, 2.5f) + drift * 0.5f;
+    float cloud3Scale = approachScale(0.46f, z3, -31.0f, 5.8f, 0.60f);
+    drawCloud(cloud3X, 8.6f, z3, cloud3Scale);
+    drawCloudWatermark(cloud3X, 8.6f, z3, cloud3Scale, "M230913");
 }
 
 void drawMountain(float x, float z, float radius, float height, const Color& color) {
@@ -807,7 +857,7 @@ void keyboard(unsigned char key, int, int) {
     }
     if (key == 'r' || key == 'R') {
         gCharacterX = 0.0f;
-        gCharacterZ = 1.20f;
+        gCharacterZ = CHARACTER_HOME_Z;
         gCharacterYaw = 0.0f;
         gRunPhase = 0.0f;
         gIsRunning = false;
@@ -837,8 +887,10 @@ void specialKeyboardUp(int key, int, int) {
 
 void updateAnimation(int) {
     const float dt = 0.016f;
-    const float turnSpeed = 125.0f;
-    const float hoverSpeed = 3.00f;
+    const float turnSpeed = 95.0f;
+    const float sideStepSpeed = 1.10f;
+    const float depthStepSpeed = 0.42f;
+    const float returnEase = 0.055f;
 
     gFaceTime += dt;
     float blinkCycle = std::fmod(gFaceTime, 4.2f);
@@ -864,6 +916,14 @@ void updateAnimation(int) {
         }
     }
 
+    float sideMovement = 0.0f;
+    if (turnLeft) {
+        sideMovement -= 1.0f;
+    }
+    if (turnRight) {
+        sideMovement += 1.0f;
+    }
+
     if (turnLeft) {
         gCharacterYaw += turnSpeed * dt;
     }
@@ -871,30 +931,30 @@ void updateAnimation(int) {
         gCharacterYaw -= turnSpeed * dt;
     }
 
-    float movement = 0.0f;
+    float depthMovement = 0.0f;
     if (forward) {
-        movement += 1.0f;
+        depthMovement -= 1.0f;
     }
     if (backward) {
-        movement -= 1.0f;
+        depthMovement += 1.0f;
     }
 
-    gIsRunning = std::fabs(movement) > 0.001f;
+    gIsRunning = std::fabs(sideMovement) > 0.001f || std::fabs(depthMovement) > 0.001f;
     if (gIsRunning) {
-        float radians = gCharacterYaw * PI / 180.0f;
         float mountSpeedMultiplier = 0.40f + 0.60f * gMountProgress;
-        gWorldTravel += movement * hoverSpeed * mountSpeedMultiplier * dt;
 
-        // Keep the avatar near the camera while the looping environment moves around it.
-        gCharacterX += std::sin(radians) * movement * 0.28f * dt;
-        gCharacterZ += (1.20f - gCharacterZ) * 0.08f;
+        // Keep the avatar in a small foreground area instead of letting movement travel endlessly.
+        gCharacterX += sideMovement * sideStepSpeed * mountSpeedMultiplier * dt;
+        gCharacterZ += depthMovement * depthStepSpeed * mountSpeedMultiplier * dt;
 
         // Keep the playable area in the foreground so the character remains the near-plane object.
-        gCharacterX = clampValue(gCharacterX, -1.15f, 1.15f);
-        gCharacterZ = clampValue(gCharacterZ, 0.95f, 1.55f);
+        gCharacterX = clampValue(gCharacterX, -CHARACTER_SIDE_LIMIT, CHARACTER_SIDE_LIMIT);
+        gCharacterZ = clampValue(gCharacterZ,
+                                  CHARACTER_HOME_Z - CHARACTER_DEPTH_LIMIT,
+                                  CHARACTER_HOME_Z + CHARACTER_DEPTH_LIMIT);
     } else {
-        gCharacterX += (0.0f - gCharacterX) * 0.025f;
-        gCharacterZ += (1.20f - gCharacterZ) * 0.08f;
+        gCharacterX += (0.0f - gCharacterX) * returnEase;
+        gCharacterZ += (CHARACTER_HOME_Z - gCharacterZ) * returnEase;
     }
 
     if (gHoverboardActive && gMountProgress < 1.0f) {
