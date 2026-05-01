@@ -2,6 +2,12 @@
 
 This folder contains a separate C/C++ `graphics.h` submission for the next assignment part. The program opens first on a `graphics.h` recreation of `../images/all.png`, then the small top-right `More` button opens the other Part E drawings.
 
+## Screenshots
+
+![Part E overview output](part_e_graphics_h_output.png)
+
+![Part E recreated primitive page](part_e_all_primitives.png)
+
 ## What It Shows
 
 The program draws four complete 2D images in one window using classic BGI/WinBGIm drawing functions:
@@ -17,6 +23,8 @@ The program draws four complete 2D images in one window using classic BGI/WinBGI
 - `part_e_graphics_h.cpp`: main C++ source file using `#include <graphics.h>`.
 - `part_e_graphics_h_output.bmp`: saved output image produced by the program.
 - `part_e_all_primitives.bmp`: saved `graphics.h` recreation of `../images/all.png`.
+- `part_e_graphics_h_output.png`: web-friendly PNG version of the main output image.
+- `part_e_all_primitives.png`: web-friendly PNG version of the recreated primitive page.
 - `README.md`: build, run, and marking notes for Part E.
 
 ## Build

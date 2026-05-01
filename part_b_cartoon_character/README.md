@@ -2,6 +2,10 @@
 
 This is a separate OpenGL/freeGLUT C++ project for Part B of the Computer Graphics assignment.
 
+## Screenshot
+
+![Part B output](part_b_3d_cartoon_scene.png)
+
 ## What It Shows
 
 - A large smooth 3D-style cartoon student character in the foreground to represent the near plane.
@@ -20,6 +24,7 @@ This is a separate OpenGL/freeGLUT C++ project for Part B of the Computer Graphi
 ## Files
 
 - `part_b_cartoon_character.cpp`: main C++ OpenGL source file.
+- `part_b_3d_cartoon_scene.png`: captured screenshot of the final rendered scene.
 - `part_b_cartoon_character_travel.exe`: compiled verified interactive 3D program.
 
 ## Build

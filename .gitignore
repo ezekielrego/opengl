@@ -1,4 +1,7 @@
 app.exe
+app
+*.ppm
+part_b_cartoon_character/*_linux
 part_e_graphics_h/*.exe
 part_e_graphics_h/*.bmp
 !part_e_graphics_h/part_e_graphics_h_output.bmp

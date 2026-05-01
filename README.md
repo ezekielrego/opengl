@@ -1,23 +1,26 @@
-# OpenGL Primitive Types Assignment Submission
+# OpenGL and Computer Graphics Assignment Submission
 
-## Student Details
+**Student:** Ezekiel Rego  
+**Student Number:** M230913  
+**Module Code:** ISH 407 / HCS411  
+**Institution:** Great Zimbabwe University
 
-- Name: `EZEKIEL REGO`
-- Student Number: `M230913`
-- Module Code: `ISH 407 / HCS411`
-- Institution: `Great Zimbabwe University`
+## Live Showcase
 
-## Submission Overview
+- **Hosted assignment page:** [https://gl.applications.co.zw](https://gl.applications.co.zw)
+- **Repository:** [https://github.com/ezekielrego/opengl](https://github.com/ezekielrego/opengl)
 
-This repository contains my OpenGL practical assignment submission for the Computer Graphics module.  
-The work demonstrates how different OpenGL primitive types are formed from vertex coordinates and how those primitives appear when rendered on a single screen.
+This repository contains my Computer Graphics assignment submission. The work is split into separate practical parts covering OpenGL primitive rendering, a 3D near/far-plane scene, and classic `graphics.h` image creation and animation tasks.
 
-The main goal of this program is to reproduce the primitive reference diagrams provided in the assignment brief as closely as possible.  
-To achieve that, the program places each primitive on one page, labels each vertex, and adjusts the layout to visually match the supplied reference images.
+Because the submitted programs are native desktop applications built with OpenGL/freeGLUT and WinBGIm `graphics.h`, the live hosted URL is presented as a public showcase page with screenshots, descriptions, and source links rather than as an in-browser executable.
 
-## Implemented Primitive Types
+## Submission Contents
 
-The program includes the following OpenGL primitives:
+### 1. OpenGL Primitive Types Reference
+
+The top-level OpenGL program in [main.cpp](main.cpp) renders a lecturer-facing reference sheet showing how the main legacy OpenGL primitive types are formed from vertex coordinates.
+
+Implemented primitives:
 
 - `GL_POINTS`
 - `GL_LINES`
@@ -30,63 +33,101 @@ The program includes the following OpenGL primitives:
 - `GL_QUAD_STRIP`
 - `GL_POLYGON`
 
-## Files Included
+**Screenshot**
 
-- [main.cpp](main.cpp): main OpenGL source file used to render the primitive chart
-- [main copy.cpp](main%20copy.cpp): backup working copy of the same program
-- [images](images): reference images used to compare and refine the primitive shapes
-- [part_e_graphics_h](part_e_graphics_h): separate Part E `graphics.h` image-creation project
-- [part_f_jet_graphics_h](part_f_jet_graphics_h): separate Part F `graphics.h` jet animation project
+![OpenGL primitive types output](images/live.png)
 
-## How The Program Works
+### 2. Part B - 3D Cartoon Character Near/Far Plane
 
-The program uses the GLUT library with a 2D orthographic projection.  
-Each primitive is defined using explicit vertex coordinates.  
-Small helper functions are used to:
+The project in [part_b_cartoon_character](part_b_cartoon_character) is a separate OpenGL/freeGLUT scene designed to demonstrate depth perception using a large foreground character and smaller background objects.
 
-- draw primitive names
-- draw vertex markers and labels such as `v0`, `v1`, `v2`
-- render filled and outlined primitives
-- support scrolling so the entire page can be viewed even when the bottom section extends beyond the visible window
+Highlights:
 
-Some primitives such as `GL_TRIANGLES`, `GL_QUADS`, `GL_QUAD_STRIP`, and `GL_TRIANGLE_FAN` were refined with custom outline logic so that their visual appearance matches the reference images more closely.
+- 3D-style cartoon student character in the near plane
+- Houses, mountains, trees, clouds, and sun in the far plane
+- Lighting, depth testing, smooth shading, and perspective setup
+- Keyboard interaction and screenshot saving
 
-## Program Output
+**Screenshot**
 
-The screenshot below shows the current program output:
+![Part B 3D cartoon character scene](part_b_cartoon_character/part_b_3d_cartoon_scene.png)
 
-![Program Output](images/live.png)
+### 3. Part E - `graphics.h` Image Creation
 
-## Build And Run
+The project in [part_e_graphics_h](part_e_graphics_h) uses WinBGIm `graphics.h` functions to draw multiple 2D scenes and a recreated primitive reference page.
 
-Example compile command used in this project:
+It includes:
 
-```powershell
-C:\msys64\mingw64\bin\g++.exe main.cpp -o app.exe -IC:\msys64\mingw64\include -LC:\msys64\mingw64\lib -lfreeglut -lopengl32 -lglu32
+- a landscape image
+- a city road image
+- a cartoon student image
+- a primitive demonstration page
+- a `graphics.h` recreation of the OpenGL primitives sheet
+
+**Screenshots**
+
+![Part E overview page](part_e_graphics_h/part_e_graphics_h_output.png)
+
+![Part E recreated primitive sheet](part_e_graphics_h/part_e_all_primitives.png)
+
+### 4. Part F - Jet Flying Across the Screen
+
+The project in [part_f_jet_graphics_h](part_f_jet_graphics_h) is a `graphics.h` animation of a jet moving across a runway and sky background.
+
+Features:
+
+- animated jet movement
+- background scenery and runway
+- timer-based updates
+- pause, restart, save, and exit controls
+
+**Screenshot**
+
+![Part F jet animation output](part_f_jet_graphics_h/part_f_jet_output.png)
+
+## Files and Folders
+
+- [main.cpp](main.cpp): main OpenGL primitive reference program
+- [main copy.cpp](main%20copy.cpp): backup working copy
+- [images](images): primitive reference images and output captures
+- [part_b_cartoon_character](part_b_cartoon_character): Part B OpenGL/freeGLUT scene
+- [part_e_graphics_h](part_e_graphics_h): Part E WinBGIm `graphics.h` work
+- [part_f_jet_graphics_h](part_f_jet_graphics_h): Part F WinBGIm `graphics.h` animation
+
+## Build Notes
+
+### OpenGL/freeGLUT parts
+
+The OpenGL programs were developed for freeGLUT. Example Windows build commands used in the assignment are included in the part-specific README files.
+
+On Linux with freeGLUT and Mesa installed, the top-level program can be compiled with:
+
+```bash
+g++ main.cpp -o app -lglut -lGL -lGLU
 ```
 
-Run the program with:
+### `graphics.h` parts
 
-```powershell
-.\app.exe
-```
+The `graphics.h` projects use vendored WinBGIm files and the provided PowerShell build scripts inside their folders.
 
 ## Controls
 
-- Mouse wheel: scroll up or down
+### Primitive reference program
+
+- Mouse wheel: scroll
 - `Up` / `Page Up`: scroll upward
 - `Down` / `Page Down`: scroll downward
 
+### Part B
+
+- `W` / `Up Arrow`: small step forward
+- `S` / `Down Arrow`: small step backward
+- `A` / `Left Arrow`: rotate left with a small side step
+- `D` / `Right Arrow`: rotate right with a small side step
+- `R`: reset
+- `P`: save screenshot
+- `Q` or `Esc`: quit
+
 ## Academic Note
 
-This repository is prepared as an academic submission.  
-The code and images are organised to make marking easier by showing:
-
-- the final rendered output
-- the source code used to generate it
-- the reference images used during development
-
-## Notes For Lecturer
-
-- The implementation focuses on visual similarity to the reference sheet provided in the assignment.
-- Deprecated legacy primitives such as `GL_QUADS`, `GL_QUAD_STRIP`, and `GL_POLYGON` are included intentionally because they are part of the assignment requirements.
+This repository is organised as an academic submission. The screenshots, source files, and hosted showcase page are included to make marking easier and to clearly present the completed work for each assignment part.
