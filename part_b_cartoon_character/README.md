@@ -2,7 +2,7 @@
 
 This is a separate OpenGL/freeGLUT C++ project for Part B of the Computer Graphics assignment.
 
-## Live Browser Demo
+## Hosted Output Page
 
 [https://gl.applications.co.zw/demos/near-far.html](https://gl.applications.co.zw/demos/near-far.html)
 

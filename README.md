@@ -8,19 +8,21 @@
 ## Live Showcase
 
 - **Hosted assignment page:** [https://gl.applications.co.zw](https://gl.applications.co.zw)
-- **Live primitive demo:** [https://gl.applications.co.zw/demos/primitives.html](https://gl.applications.co.zw/demos/primitives.html)
-- **Live Part B demo:** [https://gl.applications.co.zw/demos/near-far.html](https://gl.applications.co.zw/demos/near-far.html)
+- **Part A output page:** [https://gl.applications.co.zw/demos/primitives.html](https://gl.applications.co.zw/demos/primitives.html)
+- **Part B output page:** [https://gl.applications.co.zw/demos/near-far.html](https://gl.applications.co.zw/demos/near-far.html)
 - **Repository:** [https://github.com/ezekielrego/opengl](https://github.com/ezekielrego/opengl)
 
 This repository contains my Computer Graphics assignment submission. The work is split into separate practical parts covering OpenGL primitive rendering, a 3D near/far-plane scene, and classic `graphics.h` image creation and animation tasks.
 
-The hosted site includes live browser versions of the OpenGL primitive reference sheet and the Part B near/far-plane scene, alongside hosted output pages for the `graphics.h` sections.
+The hosted site presents the final outputs for each assignment part and links directly to the source used to produce them.
 
 ## Submission Contents
 
 ### 1. OpenGL Primitive Types Reference
 
 The top-level OpenGL program in [main.cpp](main.cpp) renders a lecturer-facing reference sheet showing how the main legacy OpenGL primitive types are formed from vertex coordinates.
+
+When run as the original desktop program, it opens in its own OpenGL window and supports scrolling so that the full reference sheet can be viewed.
 
 Implemented primitives:
 
@@ -39,13 +41,15 @@ Implemented primitives:
 
 ![OpenGL primitive types output](images/live.png)
 
-**Live Demo**
+**Hosted Output Page**
 
 [https://gl.applications.co.zw/demos/primitives.html](https://gl.applications.co.zw/demos/primitives.html)
 
 ### 2. Part B - 3D Cartoon Character Near/Far Plane
 
 The project in [part_b_cartoon_character](part_b_cartoon_character) is a separate OpenGL/freeGLUT scene designed to demonstrate depth perception using a large foreground character and smaller background objects.
+
+When run as the original submitted program, it is a 3D OpenGL/freeGLUT scene with perspective, lighting, animation, and movement controls.
 
 Highlights:
 
@@ -58,7 +62,7 @@ Highlights:
 
 ![Part B 3D cartoon character scene](part_b_cartoon_character/part_b_3d_cartoon_scene.png)
 
-**Live Demo**
+**Hosted Output Page**
 
 [https://gl.applications.co.zw/demos/near-far.html](https://gl.applications.co.zw/demos/near-far.html)
 
