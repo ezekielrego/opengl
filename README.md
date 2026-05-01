@@ -3,6 +3,7 @@
 ## Student Details
 
 - Name: `EZEKIEL REGO`
+- Student Number: `M230913`
 - Module Code: `ISH 407 / HCS411`
 - Institution: `Great Zimbabwe University`
 
@@ -34,6 +35,8 @@ The program includes the following OpenGL primitives:
 - [main.cpp](main.cpp): main OpenGL source file used to render the primitive chart
 - [main copy.cpp](main%20copy.cpp): backup working copy of the same program
 - [images](images): reference images used to compare and refine the primitive shapes
+- [part_e_graphics_h](part_e_graphics_h): separate Part E `graphics.h` image-creation project
+- [part_f_jet_graphics_h](part_f_jet_graphics_h): separate Part F `graphics.h` jet animation project
 
 ## How The Program Works
 
