@@ -2,6 +2,10 @@
 
 This folder contains a separate C/C++ `graphics.h` submission for the next assignment part. The program opens first on a `graphics.h` recreation of `../images/all.png`, then the small top-right `More` button opens the other Part E drawings.
 
+## Hosted Output Page
+
+[https://gl.applications.co.zw/parts/part-e.html](https://gl.applications.co.zw/parts/part-e.html)
+
 ## Screenshots
 
 ![Part E overview output](part_e_graphics_h_output.png)

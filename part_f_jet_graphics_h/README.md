@@ -4,6 +4,10 @@ This folder contains a separate C/C++ `graphics.h` program for Part F of the ass
 
 > Modify the hello world Graphics Program to write a code for a jet flying across the screen.
 
+## Hosted Output Page
+
+[https://gl.applications.co.zw/parts/part-f.html](https://gl.applications.co.zw/parts/part-f.html)
+
 ## Screenshot
 
 ![Part F output](part_f_jet_output.png)

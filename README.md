@@ -8,11 +8,13 @@
 ## Live Showcase
 
 - **Hosted assignment page:** [https://gl.applications.co.zw](https://gl.applications.co.zw)
+- **Live primitive demo:** [https://gl.applications.co.zw/demos/primitives.html](https://gl.applications.co.zw/demos/primitives.html)
+- **Live Part B demo:** [https://gl.applications.co.zw/demos/near-far.html](https://gl.applications.co.zw/demos/near-far.html)
 - **Repository:** [https://github.com/ezekielrego/opengl](https://github.com/ezekielrego/opengl)
 
 This repository contains my Computer Graphics assignment submission. The work is split into separate practical parts covering OpenGL primitive rendering, a 3D near/far-plane scene, and classic `graphics.h` image creation and animation tasks.
 
-Because the submitted programs are native desktop applications built with OpenGL/freeGLUT and WinBGIm `graphics.h`, the live hosted URL is presented as a public showcase page with screenshots, descriptions, and source links rather than as an in-browser executable.
+The hosted site includes live browser versions of the OpenGL primitive reference sheet and the Part B near/far-plane scene, alongside hosted output pages for the `graphics.h` sections.
 
 ## Submission Contents
 
@@ -37,6 +39,10 @@ Implemented primitives:
 
 ![OpenGL primitive types output](images/live.png)
 
+**Live Demo**
+
+[https://gl.applications.co.zw/demos/primitives.html](https://gl.applications.co.zw/demos/primitives.html)
+
 ### 2. Part B - 3D Cartoon Character Near/Far Plane
 
 The project in [part_b_cartoon_character](part_b_cartoon_character) is a separate OpenGL/freeGLUT scene designed to demonstrate depth perception using a large foreground character and smaller background objects.
@@ -51,6 +57,10 @@ Highlights:
 **Screenshot**
 
 ![Part B 3D cartoon character scene](part_b_cartoon_character/part_b_3d_cartoon_scene.png)
+
+**Live Demo**
+
+[https://gl.applications.co.zw/demos/near-far.html](https://gl.applications.co.zw/demos/near-far.html)
 
 ### 3. Part E - `graphics.h` Image Creation
 
@@ -70,6 +80,10 @@ It includes:
 
 ![Part E recreated primitive sheet](part_e_graphics_h/part_e_all_primitives.png)
 
+**Hosted Output Page**
+
+[https://gl.applications.co.zw/parts/part-e.html](https://gl.applications.co.zw/parts/part-e.html)
+
 ### 4. Part F - Jet Flying Across the Screen
 
 The project in [part_f_jet_graphics_h](part_f_jet_graphics_h) is a `graphics.h` animation of a jet moving across a runway and sky background.
@@ -84,6 +98,10 @@ Features:
 **Screenshot**
 
 ![Part F jet animation output](part_f_jet_graphics_h/part_f_jet_output.png)
+
+**Hosted Output Page**
+
+[https://gl.applications.co.zw/parts/part-f.html](https://gl.applications.co.zw/parts/part-f.html)
 
 ## Files and Folders
 
@@ -127,7 +145,3 @@ The `graphics.h` projects use vendored WinBGIm files and the provided PowerShell
 - `R`: reset
 - `P`: save screenshot
 - `Q` or `Esc`: quit
-
-## Academic Note
-
-This repository is organised as an academic submission. The screenshots, source files, and hosted showcase page are included to make marking easier and to clearly present the completed work for each assignment part.
