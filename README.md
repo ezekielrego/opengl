@@ -127,9 +127,18 @@ It includes:
 
 **Screenshots**
 
-![Part E overview page](part_e_graphics_h/part_e_graphics_h_output.png)
-
-![Part E recreated primitive sheet](part_e_graphics_h/part_e_all_primitives.png)
+<table>
+  <tr>
+    <td align="center">
+      <img src="part_e_graphics_h/part_e_graphics_h_output.png" alt="Part E overview page" width="360"><br>
+      <sub>Overview page showing the main graphics.h image collection.</sub>
+    </td>
+    <td align="center">
+      <img src="part_e_graphics_h/part_e_all_primitives.png" alt="Part E recreated primitive sheet" width="360"><br>
+      <sub>Recreated primitive reference page produced in graphics.h.</sub>
+    </td>
+  </tr>
+</table>
 
 **Hosted Output Page**
 

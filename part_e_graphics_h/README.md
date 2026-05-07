@@ -8,9 +8,18 @@ This folder contains a separate C/C++ `graphics.h` submission for the next assig
 
 ## Screenshots
 
-![Part E overview output](part_e_graphics_h_output.png)
-
-![Part E recreated primitive page](part_e_all_primitives.png)
+<table>
+  <tr>
+    <td align="center">
+      <img src="part_e_graphics_h_output.png" alt="Part E overview output" width="360"><br>
+      <sub>Overview page containing the completed graphics.h drawing set.</sub>
+    </td>
+    <td align="center">
+      <img src="part_e_all_primitives.png" alt="Part E recreated primitive page" width="360"><br>
+      <sub>Primitive recreation page drawn as part of the graphics.h submission.</sub>
+    </td>
+  </tr>
+</table>
 
 ## What It Shows
 
