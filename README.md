@@ -78,17 +78,40 @@ Included assets:
 
 **Business Card Designs**
 
-![Part C business card front](part_c_business_cards/Ezekiel%20Business%20card%20front.jpg)
-
-![Part C business card back](part_c_business_cards/Ezekiel%20Business%20card%20back.jpg)
+<table>
+  <tr>
+    <td align="center">
+      <img src="part_c_business_cards/Ezekiel%20Business%20card%20front.jpg" alt="Part C business card front" width="360"><br>
+      <sub>Front design showing the main business card face.</sub>
+    </td>
+    <td align="center">
+      <img src="part_c_business_cards/Ezekiel%20Business%20card%20back.jpg" alt="Part C business card back" width="360"><br>
+      <sub>Back design completing the final business card layout.</sub>
+    </td>
+  </tr>
+</table>
 
 **Development Screenshots**
 
-![Part C development screenshot 302](part_c_business_cards/Corel%20Designing%20Screenshot%20%28302%29.jpg)
-
-![Part C development screenshot 303](part_c_business_cards/Corel%20Designing%20Screenshot%20%28303%29.jpg)
-
-![Part C development screenshot 305](part_c_business_cards/Corel%20Designing%20Screenshot%20%28305%29.jpg)
+<table>
+  <tr>
+    <td align="center">
+      <img src="part_c_business_cards/Corel%20Designing%20Screenshot%20%28302%29.jpg" alt="Part C development screenshot 302" width="360"><br>
+      <sub>Early Corel design workspace showing business card construction in progress.</sub>
+    </td>
+    <td align="center">
+      <img src="part_c_business_cards/Corel%20Designing%20Screenshot%20%28303%29.jpg" alt="Part C development screenshot 303" width="360"><br>
+      <sub>Intermediate development view with additional layout and styling adjustments.</sub>
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <img src="part_c_business_cards/Corel%20Designing%20Screenshot%20%28305%29.jpg" alt="Part C development screenshot 305" width="360"><br>
+      <sub>Later development stage showing the design closer to the final business card result.</sub>
+    </td>
+    <td></td>
+  </tr>
+</table>
 
 ### 4. Part E - `graphics.h` Image Creation
 
