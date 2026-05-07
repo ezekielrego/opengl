@@ -66,7 +66,31 @@ Highlights:
 
 [https://gl.applications.co.zw/demos/near-far.html](https://gl.applications.co.zw/demos/near-far.html)
 
-### 3. Part E - `graphics.h` Image Creation
+### 3. Part C - Business Cards
+
+The project in [part_c_business_cards](part_c_business_cards) contains the completed business card design work together with development screenshots captured during the design process.
+
+Included assets:
+
+- front business card design
+- back business card design
+- Corel design-progress screenshots
+
+**Business Card Designs**
+
+![Part C business card front](part_c_business_cards/Ezekiel%20Business%20card%20front.jpg)
+
+![Part C business card back](part_c_business_cards/Ezekiel%20Business%20card%20back.jpg)
+
+**Development Screenshots**
+
+![Part C development screenshot 302](part_c_business_cards/Corel%20Designing%20Screenshot%20%28302%29.jpg)
+
+![Part C development screenshot 303](part_c_business_cards/Corel%20Designing%20Screenshot%20%28303%29.jpg)
+
+![Part C development screenshot 305](part_c_business_cards/Corel%20Designing%20Screenshot%20%28305%29.jpg)
+
+### 4. Part E - `graphics.h` Image Creation
 
 The project in [part_e_graphics_h](part_e_graphics_h) uses WinBGIm `graphics.h` functions to draw multiple 2D scenes and a recreated primitive reference page.
 
@@ -88,7 +112,7 @@ It includes:
 
 [https://gl.applications.co.zw/parts/part-e.html](https://gl.applications.co.zw/parts/part-e.html)
 
-### 4. Part F - Jet Flying Across the Screen
+### 5. Part F - Jet Flying Across the Screen
 
 The project in [part_f_jet_graphics_h](part_f_jet_graphics_h) is a `graphics.h` animation of a jet moving across a runway and sky background.
 
@@ -113,6 +137,7 @@ Features:
 - [main copy.cpp](main%20copy.cpp): backup working copy
 - [images](images): primitive reference images and output captures
 - [part_b_cartoon_character](part_b_cartoon_character): Part B OpenGL/freeGLUT scene
+- [part_c_business_cards](part_c_business_cards): Part C business card designs and development screenshots
 - [part_e_graphics_h](part_e_graphics_h): Part E WinBGIm `graphics.h` work
 - [part_f_jet_graphics_h](part_f_jet_graphics_h): Part F WinBGIm `graphics.h` animation
 
