@@ -61,12 +61,26 @@ void drawRunway() {
     };
     fillClosedPolygon(runway, 4, DARKGRAY, BLACK);
 
+    // Runway stripes with arrows
     setcolor(WHITE);
     for (int y = groundY + 12; y < WINDOW_HEIGHT - 12; y += 36) {
         int halfWidth = 10 + (y - groundY) / 4;
         line(WINDOW_WIDTH / 2 - halfWidth, y, WINDOW_WIDTH / 2 + halfWidth, y);
+        // Add arrow heads
+        if (y < WINDOW_HEIGHT - 50) {
+            line(WINDOW_WIDTH / 2 - halfWidth - 5, y + 5, WINDOW_WIDTH / 2 - halfWidth, y);
+            line(WINDOW_WIDTH / 2 + halfWidth + 5, y + 5, WINDOW_WIDTH / 2 + halfWidth, y);
+        }
     }
 
+    // Runway edge lights
+    setfillstyle(SOLID_FILL, WHITE);
+    for (int x = 100; x < 900; x += 30) {
+        fillellipse(x, groundY + 5, 2, 2);
+        fillellipse(x, WINDOW_HEIGHT - 5, 2, 2);
+    }
+
+    // Buildings with more details
     setfillstyle(SOLID_FILL, LIGHTGRAY);
     bar(40, groundY - 44, 160, groundY);
     bar(178, groundY - 72, 300, groundY);
@@ -74,13 +88,17 @@ void drawRunway() {
     rectangle(40, groundY - 44, 160, groundY);
     rectangle(178, groundY - 72, 300, groundY);
 
+    // Windows with lights
     setfillstyle(SOLID_FILL, YELLOW);
-    for (int x = 56; x < 285; x += 34) {
-        bar(x, groundY - 32, x + 14, groundY - 18);
+    for (int bx = 56; bx < 285; bx += 34) {
+        bar(bx, groundY - 32, bx + 14, groundY - 18);
     }
 
+    // Add doors and signs
     setcolor(BLACK);
     drawText(76, groundY - 60, "GZU AIR");
+    rectangle(100, groundY - 20, 120, groundY); // Door
+    line(110, groundY - 20, 110, groundY); // Door line
 }
 
 void drawBackground() {
@@ -90,31 +108,47 @@ void drawBackground() {
     setfillstyle(SOLID_FILL, LIGHTCYAN);
     bar(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT);
 
+    // Enhanced sun with more rays
     setfillstyle(SOLID_FILL, YELLOW);
     setcolor(YELLOW);
-    fillellipse(WINDOW_WIDTH - 95, 86, 42, 42);
-    for (int i = 0; i < 12; ++i) {
+    fillellipse(WINDOW_WIDTH - 95, 86, 45, 45);
+    setcolor(YELLOW);
+    for (int i = 0; i < 16; ++i) {
         int x1 = WINDOW_WIDTH - 95;
         int y1 = 86;
-        int x2 = x1 + (i % 4 - 1) * 28;
-        int y2 = y1 + (i / 4 - 1) * 24;
+        int x2 = x1 + (i % 4 - 1) * 35;
+        int y2 = y1 + (i / 4 - 1) * 30;
         line(x1, y1, x2, y2);
     }
 
+    // More clouds with variation
     drawCloud(150, 96, 1);
     drawCloud(470, 138, 1);
     drawCloud(760, 106, 1);
     drawCloud(1060, 154, 1);
+    drawCloud(320, 120, 0.8);
+    drawCloud(580, 90, 1.2);
+    drawCloud(880, 140, 0.9);
 
-    int mountain1[] = {0, 500, 160, 315, 340, 500};
-    int mountain2[] = {250, 500, 470, 285, 710, 500};
-    int mountain3[] = {610, 500, 805, 330, 1000, 500};
-    fillClosedPolygon(mountain1, 3, LIGHTGRAY, BLACK);
-    fillClosedPolygon(mountain2, 3, DARKGRAY, BLACK);
-    fillClosedPolygon(mountain3, 3, LIGHTGRAY, BLACK);
+    // Improved mountains with more points for smoother look
+    int mountain1[] = {0, 500, 120, 350, 200, 380, 280, 320, 340, 500};
+    int mountain2[] = {250, 500, 350, 380, 450, 320, 550, 360, 650, 300, 710, 500};
+    int mountain3[] = {610, 500, 720, 400, 820, 350, 900, 380, 1000, 500};
+    fillClosedPolygon(mountain1, 5, LIGHTGRAY, BLACK);
+    fillClosedPolygon(mountain2, 6, DARKGRAY, BLACK);
+    fillClosedPolygon(mountain3, 5, LIGHTGRAY, BLACK);
+
+    // Add snow caps
+    int snow1[] = {180, 385, 200, 380, 220, 390};
+    int snow2[] = {430, 325, 450, 320, 470, 330};
+    int snow3[] = {780, 355, 800, 350, 820, 365};
+    fillClosedPolygon(snow1, 3, WHITE, WHITE);
+    fillClosedPolygon(snow2, 3, WHITE, WHITE);
+    fillClosedPolygon(snow3, 3, WHITE, WHITE);
 
     drawRunway();
 
+    // Header
     setfillstyle(SOLID_FILL, WHITE);
     bar(0, 0, WINDOW_WIDTH, 48);
     setcolor(BLACK);
@@ -122,9 +156,30 @@ void drawBackground() {
     settextstyle(DEFAULT_FONT, HORIZ_DIR, 2);
     drawCenteredText(0, WINDOW_WIDTH, 10, "PART F - JET FLYING ACROSS THE SCREEN");
     settextstyle(DEFAULT_FONT, HORIZ_DIR, 1);
+
+    // Distant city skyline
+    setfillstyle(SOLID_FILL, DARKGRAY);
+    bar(200, 450, 220, 480);
+    bar(240, 430, 260, 480);
+    bar(280, 440, 300, 480);
+    bar(320, 420, 340, 480);
+    bar(360, 460, 380, 480);
+    bar(400, 435, 420, 480);
+    bar(440, 445, 460, 480);
+    bar(480, 425, 500, 480);
+    setcolor(BLACK);
+    rectangle(200, 450, 220, 480);
+    rectangle(240, 430, 260, 480);
+    rectangle(280, 440, 300, 480);
+    rectangle(320, 420, 340, 480);
+    rectangle(360, 460, 380, 480);
+    rectangle(400, 435, 420, 480);
+    rectangle(440, 445, 460, 480);
+    rectangle(480, 425, 500, 480);
 }
 
 void drawJet(int x, int y, int frame) {
+    // Exhaust flames
     int outerExhaust[] = {
         x - 154, y + 18,
         x - 222 - (frame % 2) * 14, y + 34,
@@ -138,6 +193,7 @@ void drawJet(int x, int y, int frame) {
     fillClosedPolygon(outerExhaust, 3, LIGHTRED, RED);
     fillClosedPolygon(innerExhaust, 3, YELLOW, YELLOW);
 
+    // Rear nozzle
     int rearNozzle[] = {
         x - 152, y + 16,
         x - 116, y + 20,
@@ -146,6 +202,7 @@ void drawJet(int x, int y, int frame) {
     };
     fillClosedPolygon(rearNozzle, 4, DARKGRAY, BLACK);
 
+    // Main fuselage (body) with smooth nose
     int body[] = {
         x - 130, y + 10,
         x + 110, y + 10,
@@ -156,46 +213,81 @@ void drawJet(int x, int y, int frame) {
     };
     fillClosedPolygon(body, 6, LIGHTGRAY, BLACK);
 
-    int topWing[] = {
+    // Cockpit with curved top
+    setfillstyle(SOLID_FILL, CYAN);
+    fillellipse(x + 120, y + 34, 25, 15);
+    setcolor(BLACK);
+    ellipse(x + 120, y + 34, 0, 360, 25, 15);
+    // Cockpit windows
+    setfillstyle(SOLID_FILL, WHITE);
+    fillellipse(x + 110, y + 30, 8, 6);
+    fillellipse(x + 130, y + 30, 8, 6);
+    fillellipse(x + 120, y + 38, 8, 6);
+
+    // Main wing with flaps
+    int mainWing[] = {
         x - 24, y + 10,
         x + 38, y - 72,
-        x + 86, y + 10
+        x + 86, y + 10,
+        x + 70, y + 15
     };
-    int bottomWing[] = {
-        x - 24, y + 58,
-        x + 40, y + 126,
-        x + 86, y + 58
-    };
-    fillClosedPolygon(topWing, 3, BLUE, BLACK);
-    fillClosedPolygon(bottomWing, 3, BLUE, BLACK);
+    fillClosedPolygon(mainWing, 4, BLUE, BLACK);
 
-    int tailTop[] = {
+    // Wing flaps
+    setfillstyle(SOLID_FILL, DARKGRAY);
+    bar(x + 38, y - 72, x + 50, y - 60);
+
+    // Horizontal stabilizers (tail wings)
+    int horizTailTop[] = {
         x - 126, y + 14,
         x - 90, y - 52,
         x - 68, y + 18
     };
-    int tailBottom[] = {
+    int horizTailBottom[] = {
         x - 124, y + 56,
         x - 86, y + 94,
         x - 65, y + 54
     };
-    fillClosedPolygon(tailTop, 3, RED, BLACK);
-    fillClosedPolygon(tailBottom, 3, RED, BLACK);
+    fillClosedPolygon(horizTailTop, 3, RED, BLACK);
+    fillClosedPolygon(horizTailBottom, 3, RED, BLACK);
 
-    setfillstyle(SOLID_FILL, LIGHTBLUE);
+    // Vertical stabilizer
+    int vertTail[] = {
+        x - 68, y + 18,
+        x - 50, y - 20,
+        x - 32, y + 18
+    };
+    fillClosedPolygon(vertTail, 3, RED, BLACK);
+
+    // Engines (turbofans) under wings
+    setfillstyle(SOLID_FILL, DARKGRAY);
+    fillellipse(x + 20, y + 34, 18, 12);
+    fillellipse(x + 60, y + 34, 18, 12);
     setcolor(BLACK);
-    fillellipse(x + 58, y + 24, 34, 12);
-    ellipse(x + 58, y + 24, 0, 360, 34, 12);
+    ellipse(x + 20, y + 34, 0, 360, 18, 12);
+    ellipse(x + 60, y + 34, 0, 360, 18, 12);
+    // Engine intakes
+    setfillstyle(SOLID_FILL, BLACK);
+    fillellipse(x + 20, y + 34, 12, 8);
+    fillellipse(x + 60, y + 34, 12, 8);
 
-    setfillstyle(SOLID_FILL, WHITE);
-    bar(x - 72, y + 24, x - 50, y + 42);
-    bar(x - 36, y + 24, x - 14, y + 42);
-    bar(x, y + 24, x + 22, y + 42);
+    // Landing gear (wheels)
+    setfillstyle(SOLID_FILL, BLACK);
+    fillellipse(x + 10, y + 70, 8, 8);
+    fillellipse(x + 50, y + 70, 8, 8);
+    fillellipse(x - 20, y + 70, 8, 8);
+    // Gear struts
     setcolor(BLACK);
-    rectangle(x - 72, y + 24, x - 50, y + 42);
-    rectangle(x - 36, y + 24, x - 14, y + 42);
-    rectangle(x, y + 24, x + 22, y + 42);
+    line(x + 10, y + 58, x + 10, y + 62);
+    line(x + 50, y + 58, x + 50, y + 62);
+    line(x - 20, y + 58, x - 20, y + 62);
 
+    // Antenna
+    line(x + 150, y + 30, x + 160, y + 25);
+
+    // Smooth edges with arcs where possible
+    setcolor(BLACK);
+    arc(x + 165, y + 34, 270, 90, 10); // Nose arc
 }
 
 void drawHud(bool paused, bool saved) {

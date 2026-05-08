@@ -127,50 +127,71 @@ void drawLandscapeImage(int x, int y, int width, int height) {
     int bottom = y + height - 1;
     int ground = y + height - 86;
 
-    setfillstyle(SOLID_FILL, LIGHTCYAN);
-    bar(x + 1, top, x + width - 1, ground);
+    // Sky with gradient effect using lines
+    for (int yy = top; yy < ground; ++yy) {
+        int blue = 206 + (yy - top) * 49 / (ground - top);
+        setcolor(COLOR(135, 206, blue));
+        line(x + 1, yy, x + width - 1, yy);
+    }
     setfillstyle(SOLID_FILL, LIGHTGREEN);
     bar(x + 1, ground, x + width - 1, bottom);
 
+    // Sun with rays
     setfillstyle(SOLID_FILL, YELLOW);
     setcolor(YELLOW);
-    fillellipse(x + width - 85, top + 44, 31, 31);
+    fillellipse(x + width - 85, top + 44, 35, 35);
     setcolor(YELLOW);
-    for (int i = 0; i < 12; ++i) {
-        int dx = (i % 4 - 1) * 20;
-        int dy = (i / 4 - 1) * 18;
+    for (int i = 0; i < 16; ++i) {
+        int dx = (i % 4 - 1) * 25;
+        int dy = (i / 4 - 1) * 22;
         line(x + width - 85, top + 44, x + width - 85 + dx, top + 44 + dy);
     }
 
+    // More clouds
     drawCloud(x + 112, top + 56, 1);
     drawCloud(x + width - 205, top + 78, 1);
+    drawCloud(x + 50, top + 30, 0.8);
+    drawCloud(x + width - 100, top + 20, 1.2);
 
+    // Mountains with more peaks
     int mountain1[] = {
         x + 40, ground,
-        x + 165, top + 55,
+        x + 120, top + 70,
+        x + 200, top + 50,
+        x + 280, top + 80,
         x + 292, ground
     };
     int mountain2[] = {
         x + 225, ground,
-        x + 364, top + 68,
+        x + 300, top + 60,
+        x + 380, top + 40,
+        x + 450, top + 70,
         x + width - 40, ground
     };
-    fillClosedPolygon(mountain1, 3, DARKGRAY, BLACK);
-    fillClosedPolygon(mountain2, 3, LIGHTGRAY, BLACK);
+    fillClosedPolygon(mountain1, 5, DARKGRAY, BLACK);
+    fillClosedPolygon(mountain2, 5, LIGHTGRAY, BLACK);
 
+    // Snow caps
     int snow1[] = {
-        x + 135, top + 91,
-        x + 165, top + 55,
-        x + 194, top + 92
+        x + 110, top + 75,
+        x + 120, top + 70,
+        x + 130, top + 78
     };
     int snow2[] = {
-        x + 331, top + 102,
-        x + 364, top + 68,
-        x + 397, top + 102
+        x + 290, top + 85,
+        x + 300, top + 60,
+        x + 310, top + 88
+    };
+    int snow3[] = {
+        x + 370, top + 45,
+        x + 380, top + 40,
+        x + 390, top + 50
     };
     fillClosedPolygon(snow1, 3, WHITE, WHITE);
     fillClosedPolygon(snow2, 3, WHITE, WHITE);
+    fillClosedPolygon(snow3, 3, WHITE, WHITE);
 
+    // River with waves
     int river[] = {
         x + 240, ground,
         x + 312, ground,
@@ -178,14 +199,28 @@ void drawLandscapeImage(int x, int y, int width, int height) {
         x + 159, bottom
     };
     fillClosedPolygon(river, 4, CYAN, BLUE);
+    setcolor(BLUE);
+    for (int rx = x + 180; rx < x + 350; rx += 20) {
+        arc(rx, ground + 10, 0, 180, 10);
+    }
 
+    // More trees
     drawTree(x + 70, bottom - 14, 2);
     drawTree(x + width - 86, bottom - 10, 2);
     drawTree(x + width - 150, bottom - 20, 1);
+    drawTree(x + 150, bottom - 18, 1.5);
+    drawTree(x + width - 200, bottom - 12, 1);
+
+    // Add birds
+    setcolor(BLACK);
+    for (int bx = x + 50; bx < x + width - 50; bx += 100) {
+        int by = top + 20 + (bx % 40);
+        line(bx - 5, by, bx + 5, by);
+        line(bx - 3, by - 3, bx + 3, by + 3);
+        line(bx + 3, by - 3, bx - 3, by + 3);
+    }
 
     setcolor(BLACK);
-    arc(x + width - 160, top + 64, 20, 160, 14);
-    arc(x + width - 130, top + 60, 20, 160, 14);
 }
 
 void drawCityImage(int x, int y, int width, int height) {
@@ -200,25 +235,30 @@ void drawCityImage(int x, int y, int width, int height) {
     setfillstyle(SOLID_FILL, LIGHTGREEN);
     bar(x + 1, horizon, x + width - 1, horizon + 26);
 
+    // More buildings with varying heights
     setcolor(BLACK);
     setfillstyle(SOLID_FILL, LIGHTGRAY);
     bar(x + 48, top + 72, x + 124, horizon);
     bar(x + 140, top + 42, x + 224, horizon);
     bar(x + width - 214, top + 55, x + width - 130, horizon);
     bar(x + width - 112, top + 82, x + width - 42, horizon);
+    bar(x + 20, top + 90, x + 40, horizon); // Small building
+    bar(x + width - 30, top + 70, x + width - 10, horizon); // Another
 
+    // Windows with some lit
     setfillstyle(SOLID_FILL, YELLOW);
     for (int bx = x + 60; bx < x + 220; bx += 32) {
         for (int by = top + 84; by < horizon - 12; by += 28) {
-            bar(bx, by, bx + 12, by + 13);
+            if ((bx + by) % 2 == 0) bar(bx, by, bx + 12, by + 13);
         }
     }
     for (int bx = x + width - 196; bx < x + width - 55; bx += 32) {
         for (int by = top + 86; by < horizon - 12; by += 28) {
-            bar(bx, by, bx + 12, by + 13);
+            if ((bx + by) % 3 == 0) bar(bx, by, bx + 12, by + 13);
         }
     }
 
+    // Road with lane markings
     int road[] = {
         x + 180, horizon,
         x + width - 180, horizon,
@@ -230,17 +270,29 @@ void drawCityImage(int x, int y, int width, int height) {
     setcolor(WHITE);
     for (int yy = horizon + 12; yy < bottom - 20; yy += 36) {
         line(x + width / 2, yy, x + width / 2, yy + 20);
+        // Add side lines
+        line(x + 60, yy, x + 60, yy + 20);
+        line(x + width - 60, yy, x + width - 60, yy + 20);
     }
 
+    // Enhanced car
     setfillstyle(SOLID_FILL, RED);
     bar(x + 170, bottom - 74, x + 304, bottom - 38);
     fillellipse(x + 235, bottom - 76, 45, 22);
     setfillstyle(SOLID_FILL, LIGHTCYAN);
     bar(x + 212, bottom - 94, x + 266, bottom - 72);
+    // Windshield
+    setfillstyle(SOLID_FILL, CYAN);
+    bar(x + 220, bottom - 90, x + 250, bottom - 78);
     setfillstyle(SOLID_FILL, BLACK);
     fillellipse(x + 195, bottom - 35, 15, 15);
     fillellipse(x + 280, bottom - 35, 15, 15);
+    // Headlights
+    setfillstyle(SOLID_FILL, YELLOW);
+    fillellipse(x + 170, bottom - 50, 5, 5);
+    fillellipse(x + 304, bottom - 50, 5, 5);
 
+    // Traffic light with signals
     setfillstyle(SOLID_FILL, BLACK);
     bar(x + width - 92, horizon - 82, x + width - 72, horizon - 20);
     setfillstyle(SOLID_FILL, RED);
@@ -266,53 +318,83 @@ void drawStudentImage(int x, int y, int width, int height) {
     setfillstyle(SOLID_FILL, LIGHTGREEN);
     bar(x + 1, ground, x + width - 1, bottom);
 
+    // Building with door
     setfillstyle(SOLID_FILL, LIGHTGRAY);
     bar(x + 48, top + 102, x + 178, ground);
     setcolor(BLACK);
     rectangle(x + 48, top + 102, x + 178, ground);
     drawText(x + 70, top + 118, "GZU LAB");
+    rectangle(x + 100, ground - 20, x + 120, ground); // Door
 
+    // Student body
     setfillstyle(SOLID_FILL, BROWN);
     bar(cx - 58, ground - 96, cx + 58, ground - 16);
+    // Shirt
     setfillstyle(SOLID_FILL, BLUE);
     bar(cx - 70, ground - 118, cx + 70, ground - 64);
     setcolor(BLACK);
     rectangle(cx - 70, ground - 118, cx + 70, ground - 64);
 
+    // Head
     setfillstyle(SOLID_FILL, BROWN);
     fillellipse(cx, ground - 165, 46, 55);
+    // Hair
     setfillstyle(SOLID_FILL, BLACK);
     fillellipse(cx, ground - 205, 48, 20);
+    // Eyes
     fillellipse(cx - 38, ground - 177, 10, 23);
     fillellipse(cx + 38, ground - 177, 10, 23);
 
+    // Eye whites and pupils
     setfillstyle(SOLID_FILL, WHITE);
     fillellipse(cx - 18, ground - 168, 10, 7);
     fillellipse(cx + 18, ground - 168, 10, 7);
     setfillstyle(SOLID_FILL, BLACK);
     fillellipse(cx - 18, ground - 168, 3, 3);
     fillellipse(cx + 18, ground - 168, 3, 3);
+    // Smile
     setcolor(BLACK);
     arc(cx, ground - 151, 200, 340, 18);
 
+    // Arms
     line(cx - 72, ground - 105, cx - 116, ground - 56);
     line(cx + 72, ground - 105, cx + 116, ground - 56);
+    // Hands
     setfillstyle(SOLID_FILL, BROWN);
     fillellipse(cx - 118, ground - 54, 9, 9);
     fillellipse(cx + 118, ground - 54, 9, 9);
 
-    setfillstyle(SOLID_FILL, LIGHTGRAY);
+    // Legs
+    setfillstyle(SOLID_FILL, BLUE);
     bar(cx - 52, ground - 48, cx + 52, ground - 8);
     setcolor(BLACK);
     rectangle(cx - 52, ground - 48, cx + 52, ground - 8);
     line(cx, ground - 48, cx, ground - 8);
-    drawText(cx - 38, ground - 34, "M230913");
+    // Shoes
+    setfillstyle(SOLID_FILL, BLACK);
+    bar(cx - 60, ground - 8, cx - 44, bottom - 8);
+    bar(cx + 44, ground - 8, cx + 60, bottom - 8);
 
+    // Backpack
+    setfillstyle(SOLID_FILL, RED);
+    bar(cx + 58, ground - 118, cx + 78, ground - 64);
     setcolor(BLACK);
-    line(cx - 28, ground - 16, cx - 42, bottom - 8);
-    line(cx + 28, ground - 16, cx + 42, bottom - 8);
-    fillellipse(cx - 45, bottom - 8, 19, 7);
-    fillellipse(cx + 45, bottom - 8, 19, 7);
+    rectangle(cx + 58, ground - 118, cx + 78, ground - 64);
+    // Strap
+    line(cx + 58, ground - 105, cx + 70, ground - 105);
+
+    // Book in hand
+    setfillstyle(SOLID_FILL, GREEN);
+    bar(cx - 130, ground - 70, cx - 110, ground - 50);
+    setcolor(BLACK);
+    rectangle(cx - 130, ground - 70, cx - 110, ground - 50);
+
+    // ID badge
+    setfillstyle(SOLID_FILL, WHITE);
+    bar(cx - 52, ground - 48, cx + 52, ground - 28);
+    setcolor(BLACK);
+    rectangle(cx - 52, ground - 48, cx + 52, ground - 28);
+    drawText(cx - 38, ground - 34, "M230913");
 }
 
 void drawPrimitiveImage(int x, int y, int width, int height) {
