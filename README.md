@@ -170,9 +170,10 @@ Features:
 - timer-based updates
 - pause, restart, save, and exit controls
 
-**Screenshot**
+**First Draft Screenshot**
 
-![Part F jet animation output](part_f_jet_graphics_h/part_f_jet_output.png)
+<img src="part_f_jet_graphics_h/part_f_jet_output.png" alt="Part F first draft jet animation output" width="240"><br>
+<sub>First draft of the jet animation before the separate Part E city scene was added.</sub>
 
 **Hosted Output Page**
 
