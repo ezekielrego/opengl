@@ -144,6 +144,21 @@ It includes:
 
 [https://gl.applications.co.zw/parts/part-e.html](https://gl.applications.co.zw/parts/part-e.html)
 
+### 4b. Part E - Separate Animated Jet City Scene
+
+The project in [part_e_jet_city_animation](part_e_jet_city_animation) is a separate `graphics.h` animation based on the supplied cartoon city and airplane reference image.
+
+Features:
+
+- bright cartoon sky and city skyline recreated with BGI drawing primitives
+- animated jet flying across the top of the scene
+- dotted flight trail, clouds, skyline details, and saved output image
+- pause, restart, save, and exit controls
+
+**Screenshot**
+
+![Part E animated jet city output](part_e_jet_city_animation/part_e_jet_city_animation_output.png)
+
 ### 5. Part F - Jet Flying Across the Screen
 
 The project in [part_f_jet_graphics_h](part_f_jet_graphics_h) is a `graphics.h` animation of a jet moving across a runway and sky background.
@@ -171,6 +186,7 @@ Features:
 - [part_b_cartoon_character](part_b_cartoon_character): Part B OpenGL/freeGLUT scene
 - [part_c_business_cards](part_c_business_cards): Part C business card designs and development screenshots
 - [part_e_graphics_h](part_e_graphics_h): Part E WinBGIm `graphics.h` work
+- [part_e_jet_city_animation](part_e_jet_city_animation): separate Part E-style animated jet city scene
 - [part_f_jet_graphics_h](part_f_jet_graphics_h): Part F WinBGIm `graphics.h` animation
 
 ## Build Notes

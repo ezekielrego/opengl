@@ -6,6 +6,7 @@ part_e_graphics_h/*.exe
 part_e_graphics_h/*.bmp
 !part_e_graphics_h/part_e_graphics_h_output.bmp
 !part_e_graphics_h/part_e_all_primitives.bmp
+part_e_jet_city_animation/*.exe
 part_f_jet_graphics_h/*.exe
 part_f_jet_graphics_h/*.bmp
 !part_f_jet_graphics_h/part_f_jet_output.bmp
